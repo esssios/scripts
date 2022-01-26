@@ -1,0 +1,21 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "Scripts make life better",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com.cnpmjs.org/esssios/scripts.git"
+  },
+  "keywords": [
+    "script"
+  ],
+  "author": "esssios",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.25.0"
+  }
+}
