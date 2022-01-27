@@ -210,7 +210,7 @@ const draw = async () => {
 /**
  *查询签到天数
  *
- * @return {string} continuousDay 连续签到天数 sumCount 总签到天数
+ * @return {string} cont_count 连续签到天数 sum_count 总签到天数
  */
 const getSignInDays = async () => {
     try {
@@ -218,8 +218,8 @@ const getSignInDays = async () => {
             url: jueJinConfig.api.getSignInDays,
             method: 'get'
         })
-        console.log(`连续签到【${signInDaysRes.continuousDay}】天  总签到天数【${signInDaysRes.sumCount}】  掘金不停 签到不断💪`)
-        return `连续签到【${signInDaysRes.continuousDay}】天  总签到天数【${signInDaysRes.sumCount}】  掘金不停 签到不断💪`
+        console.log(`连续签到【${signInDaysRes.data.cont_count}】天  总签到天数【${signInDaysRes.data.sum_count}】  掘金不停 签到不断💪`)
+        return `连续签到【${signInDaysRes.data.cont_count}】天  总签到天数【${signInDaysRes.data.sum_count}】  掘金不停 签到不断💪`
     } catch (error) {
         throw `查询签到天数失败!🙁【${signInDaysRes.err_msg}】`
     }
@@ -267,4 +267,5 @@ const start = async () => {
     }
 }
 
-start()
+// start()
+getSignInDays()
