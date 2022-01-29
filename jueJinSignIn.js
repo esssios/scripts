@@ -267,5 +267,4 @@ const start = async () => {
     }
 }
 
-// start()
-getSignInDays()
+module.exports = start
