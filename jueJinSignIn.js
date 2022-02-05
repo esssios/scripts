@@ -263,3 +263,4 @@ const start = async () => {
         console.error(`签到失败!=======> ${error}`)
     }
 }
+module.exports = start
