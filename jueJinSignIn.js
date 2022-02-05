@@ -9,11 +9,14 @@ const {
 axios.defaults.baseURL = jueJinConfig.baseUrl
 axios.defaults.headers['cookie'] = jueJinConfig.cookie
 
-// 相应拦截处理
+// 响应拦截处理
 axios.interceptors.response.use((response) => {
     const {
         data
     } = response
+    // pushplus消息推送成功返回data
+    if (data.code === 200) return data
+    // 抽奖签到成功返回data
     if (data.err_msg === 'success' && data.err_no === 0) {
         return data
     } else {
@@ -29,29 +32,23 @@ axios.interceptors.response.use((response) => {
  * @param {JSON} content 
  */
 const pushMsg = async (title, content) => {
-    console.log(`\n------${getNowTime(`toLocaleString`)} 开始推送wx消息 ------`);
     //获取配置参数
     const {
         url,
         token
     } = pushPlus;
-    const res = await axios({
-        url,
-        method: `get`,
+    await axios.get(url, {
         params: {
             token,
             template: `json`,
             title,
             content,
         }
-    });
-    if (res && res.data) {
-        console.log(res);
+    }).then(res => {
         console.log(`\n ${JSON.stringify(res.data)} \n\n------ ${getNowTime(`toLocaleTimeString`)} 推送成功 ------\n`);
-    } else {
-        console.log(res);
-        console.log(`\n------ ${getNowTime(`toLocaleTimeString`)} 推送失败 ------ \n`);
-    }
+    }).catch(err => {
+        console.log(`\n ${err} \n\n------- ${getNowTime(`toLocaleTimeString`)} 推送失败 --------\n`)
+    })
 }
 
 /**
@@ -266,5 +263,3 @@ const start = async () => {
         console.error(`签到失败!=======> ${error}`)
     }
 }
-
-module.exports = start

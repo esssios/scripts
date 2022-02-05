@@ -1,13 +1,9 @@
 const schedule = require('node-schedule');
 const start = require("./jueJinSignIn")
 const rule = new schedule.RecurrenceRule();
-rule.hour = 14;
-rule.minute = 10;
+rule.hour = 10;
+rule.minute = 20;
 rule.tz = 'Asia/Shanghai';
-
-// const job = schedule.scheduleJob(rule, function () {
-//     console.log('The answer to life, the universe, and everything!');
-// });
 
 const autoSign = () => {
     //每天在6:00-6:10随机签到
